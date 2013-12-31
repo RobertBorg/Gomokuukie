@@ -1,0 +1,52 @@
+<template name="highscore">
+	<div class="row">
+		<div class="col-md-6">
+			<h3>Personal highscore</h3>
+			{{#if getPersonalHighscore}}
+				<table class="table table-striped">
+					<thead>
+						<td>#</td>
+						<td>Name</td>
+						<td>Score</td>
+					</thead>
+					<tbody>
+						{{#each getPersonalHighscore}}
+							<tr id="p-{{_id}}">
+								{{> highscoreRow}}
+							</tr>
+						{{/each}}
+					</tbody>
+				</table>
+			{{else}}
+				You have not finished any games yet.
+			{{/if}}
+		</div>
+		<div class="col-md-6">
+			<h3>Global highscore</h3>
+			{{#if getHighscore}}
+				<table class="table table-striped">
+					<thead>
+						<td>#</td>
+						<td>Name</td>
+						<td>Score</td>
+					</thead>
+					<tbody>
+						{{#each getHighscore}}
+							<tr id="g-{{_id}}">
+								{{> highscoreRow}}
+							</tr>
+						{{/each}}
+					</tbody>
+				</table>
+			{{else}}
+				No one has finished a game yet.
+			{{/if}}
+		</div>
+	</div>
+</template>
+
+<template name="highscoreRow">
+	<td></td>
+	<td>{{getUserName}}</td>
+	<td>{{score}}</td>
+</template>

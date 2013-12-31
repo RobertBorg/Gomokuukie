@@ -1,0 +1,65 @@
+<template name="game">
+	{{#if gameStarted}}
+		{{> gameBoard}}
+	{{else}}
+		{{> newGame}}
+	{{/if}}
+</template>
+
+<template name="characterSelection">
+	<select class="image-picker">
+		{{#each getCharacters}}	
+			<option value="{{_id}}" data-img-label="<p>{{name}}</p><p>XP: {{getExperience}}</p>" data-img-src="images/Djurbarn/{{portrait}}">
+			</option>
+		{{/each}}
+	</select>
+</template>
+
+<template name="character">
+	<div class="character" data-id="{{_id}}" style="background-image: url(images/Djurbarn/{{portrait}})">
+	</div>
+	<div class="characterData" style="{{#if notGameStarted}}{{#if selected}}background-color: green{{/if}}{{/if}}">
+		<p>{{name}}</p>
+		<p>XP: {{getExperience}}</p>
+	</div>
+</template>
+
+<template name="newGame">
+	<button id="newGame" type="button" class="btn btn-primary">Start new game</button>
+	<p>
+		<label for="numCookies">number of cookies</label>
+		3<input id="numCookies" type="range" value="{{getNumCookies}}" min="3" max="8">8
+	</p>
+	{{> characterSelection}}
+</template>
+
+<template name="gameBoard">
+	{{#with getGame}}
+		<div class="row">
+			<div class="col-md-6">
+				<table>
+				{{#each board}}
+				<tr>
+					{{#each this}} {{> gameBoardCell}} {{/each}}
+				</tr>
+				{{/each}}
+				</table>
+			</div>
+			<div class="col-md-6">
+				{{#with getCharacter}}
+					{{> character}}
+				{{/with}}
+				Score: {{score}}
+				{{#if gameOver}}
+					<p>	
+						<button id="create-new-game" class="btn btn-primary" type="button" >Create new game</button>
+					</p>
+				{{/if}}
+			</div>
+		</div> 
+	{{/with}}
+</template>
+
+<template name="gameBoardCell">
+	<td data-x="{{x}}" data-y="{{y}}" class="gameboard-col {{#if isSelected}}animated pulse selected{{/if}}" {{#if getPathForCookie}}style="background-image: url({{getPathForCookie}})"{{/if}}></td>
+</template>

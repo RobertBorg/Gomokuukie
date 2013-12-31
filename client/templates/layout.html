@@ -1,0 +1,34 @@
+<template name="layout">
+		{{> navbar}}
+		<div class="container">
+			{{#if currentUser}}
+				{{yield}}
+			{{else}}
+				Please <button id="click-login" type="button">Sign in</button> to play the game
+			{{/if}}
+		</div>
+</template>
+
+<template name="navbar">
+	<div class="navbar navbar-default navbar-static-top" role="navigation">
+		
+		<div class="container">
+			<a class="navbar-brand" href="#">Cookie Count</a>
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="/">Play</a></li>
+					<li><a href="/highscore">Highscore</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li>{{loginButtons}}</li>
+				</ul>
+			</div>
+		</div>
+	</div></template>

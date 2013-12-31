@@ -1,0 +1,41 @@
+/* CSS declarations go here */
+td.gameboard-col {
+	border: solid;
+	height: 64px;
+	width: 64px;
+	background-size:64px 64px;
+	background-repeat:no-repeat;
+	position: relative;
+	background-color: gray;
+
+	transition: background-color 2s;
+	-webkit-transition: background-color 2s; /* Safari */
+}
+
+div.character {
+	height: 128px;
+	background-repeat:no-repeat;
+}
+
+.cookie {
+	height: 64px;
+	width: 64px;
+	background-size:64px 64px;
+	background-repeat:no-repeat;
+}
+
+td.selected {
+	animation: selected 0.5s, pulse 0.5s;
+	-webkit-animation: selected 0.5s, pulse 0.5s; /* Safari and Chrome */
+	-webkit-animation-fill-mode: forwards;
+}
+
+@keyframes selected
+{
+to {background: green;}
+}
+
+@-webkit-keyframes selected /* Safari and Chrome */
+{
+to {background-color: green;}
+}
